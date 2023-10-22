@@ -1,4 +1,8 @@
 # ocaml-99problems
 
-dune build
-_build/default/test.exe
+## Build and Run
+```
+$ dune build
+
+$ build/default/test.exe
+```
