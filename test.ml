@@ -1,5 +1,5 @@
 open OUnit2
-open Last
+open Lists
 
 let tests = "test suite for last" >::: [
   "empty" >:: (fun _ -> assert_equal None (last []) );
