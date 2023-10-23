@@ -13,7 +13,11 @@ let tests = "test suite for lists" >::: [
 
   "length - three" >:: (fun _ -> assert_equal 3 (length ["a"; "b"; "c"]));
   "length - empty" >:: (fun _ -> assert_equal 0 (length [] ));
-    
+
+  "reverse - three" >:: (fun _ -> assert_equal ["c"; "b"; "a"] (reverse ["a"; "b"; "c" ]));
+
+  "is_palindrome - five (odd)" >:: (fun _ -> assert_equal true (is_palindrome ["x"; "a"; "m"; "a"; "x"]));
+  "is_palindrome - two (even)" >:: (fun _ -> assert_equal false (is_palindrome ["a"; "b" ]));
 ]
 
 let _ = run_test_tt_main tests

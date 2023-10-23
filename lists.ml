@@ -26,15 +26,14 @@ let rec length_aux res = function
 
 let length lst = length_aux 0 lst
 
-
-let rec append lst1 lst2 =
-  match lst1 with [] -> lst2 | h :: t -> h :: append t lst2
-
+(* 5 *)
 let rec reverse_aux lst1 lst2 =
   match lst1 with [] -> lst2 | h :: t -> reverse_aux t (h :: lst2)
 
-(* 5 *)
 let reverse lst = reverse_aux lst []
+
+let rec append lst1 lst2 =
+  match lst1 with [] -> lst2 | h :: t -> h :: append t lst2
 
 (* 6 *)
 let rec list_compare lst1 lst2 =
@@ -44,7 +43,6 @@ let rec list_compare lst1 lst2 =
   | [], _ -> false
   | h1 :: t1, h2 :: t2 -> if h1 = h2 then list_compare t1 t2 else false
 
-(* 7 *)
 let is_palindrome lst = list_compare lst (reverse lst)
 
 type 'a node = One of 'a | Many of 'a node list
