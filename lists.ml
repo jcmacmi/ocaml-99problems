@@ -12,14 +12,21 @@ let rec last_two = function
   | _ :: t -> last_two t
 
 (* 3 *)
-let rec listnth n lst =
+let rec listnth lst n =
   if 0 > n then raise (Failure "nth")
   else
     match lst with
-    | h :: t -> if n = 0 then h else listnth (n - 1) t
+    | h :: t -> if n = 0 then h else listnth t (n-1)
     | [] -> raise (Failure "nth")
 
 (* 4 *)
+let rec length_aux res = function
+  | [] -> res
+  | _ :: t -> length_aux (res+1) t
+
+let length lst = length_aux 0 lst
+
+
 let rec append lst1 lst2 =
   match lst1 with [] -> lst2 | h :: t -> h :: append t lst2
 
