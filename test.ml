@@ -26,6 +26,10 @@ let tests = "test suite for lists" >::: [
   "pack - a bunch" >:: (fun _ -> assert_equal [["a";"a";"a";"a"]; ["b"]; ["c"; "c"]; ["a";"a"]; ["d"]; ["e"; "e"; "e"; "e"]] (pack ["a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e" ]));
 
   "encode - a bunch" >:: (fun _ -> assert_equal [(4, "a"); (1,"b"); (2, "c"); (2, "a"); (1, "d"); (4, "e")] (encode ["a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e" ]));
+
+  "mencode - a bunch" >:: (fun _ -> assert_equal [Many(4, "a"); One "b"; Many(2, "c"); Many(2, "a"); One "d"; Many(4, "e")] (mencode ["a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e" ]));
+
+  "duplicate - five" >:: (fun _ -> assert_equal ["a"; "a"; "b"; "b"; "c"; "c"; "d"; "d"; "e"; "e" ] (duplicate ["a"; "b"; "c"; "d"; "e" ] ));
 ]
 
 let _ = run_test_tt_main tests
