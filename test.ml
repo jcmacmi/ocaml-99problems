@@ -18,6 +18,14 @@ let tests = "test suite for lists" >::: [
 
   "is_palindrome - five (odd)" >:: (fun _ -> assert_equal true (is_palindrome ["x"; "a"; "m"; "a"; "x"]));
   "is_palindrome - two (even)" >:: (fun _ -> assert_equal false (is_palindrome ["a"; "b" ]));
+
+  "flatten - five" >:: (fun _ -> assert_equal ["a"; "b"; "c"; "d"; "e"] (flatten [One "a"; Many [ One "b"; Many [One "c"; One "d"]; One "e" ]])) ;
+
+  "compress - a bunch" >:: (fun _ -> assert_equal ["a"; "b"; "c"; "a"; "d"; "e" ] (compress ["a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e" ]));
+
+  "pack - a bunch" >:: (fun _ -> assert_equal [["a";"a";"a";"a"]; ["b"]; ["c"; "c"]; ["a";"a"]; ["d"]; ["e"; "e"; "e"; "e"]] (pack ["a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e" ]));
+
+  "encode - a bunch" >:: (fun _ -> assert_equal [(4, "a"); (1,"b"); (2, "c"); (2, "a"); (1, "d"); (4, "e")] (encode ["a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e" ]));
 ]
 
 let _ = run_test_tt_main tests

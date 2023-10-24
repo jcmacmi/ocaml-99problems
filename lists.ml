@@ -32,8 +32,6 @@ let rec reverse_aux lst1 lst2 =
 
 let reverse lst = reverse_aux lst []
 
-let rec append lst1 lst2 =
-  match lst1 with [] -> lst2 | h :: t -> h :: append t lst2
 
 (* 6 *)
 let rec list_compare lst1 lst2 =
@@ -55,7 +53,7 @@ let rec flatten_list (lst1 : 'a node list) lst2 =
       | One x -> flatten_list t (x :: lst2)
       | Many l -> flatten_list t (flatten_list l lst2))
 
-(* 8 *)
+(* 7 *)
 (* It would be nice to be able to avoid the reverse at the end *)
 let flatten (lst : 'a node list) = reverse (flatten_list lst [])
 
@@ -64,7 +62,7 @@ let rec compress_aux x lst res =
   | [] -> res
   | h :: t -> if h = x then compress_aux h t res else compress_aux h t (h :: res)
 
-(* 9 *)
+(* 8 *)
 let compress lst =
   match lst with [] -> [] | h :: t -> reverse (compress_aux h t (h :: []))
 
@@ -75,11 +73,11 @@ let rec pack_aux x lst cur_res res =
       if h = x then pack_aux h t (h :: cur_res) res
       else pack_aux h t (h :: []) (cur_res :: res)
 
-(* 10 *)
+(* 9 *)
 let pack lst =
   match lst with [] -> [] | h :: _ -> reverse (pack_aux h lst [] [])
 
-(* 11 *)
+(* 10 *)
 let rec encode_aux lst cur_res res =
   match (lst, cur_res) with
   | [], _ -> cur_res :: res
@@ -105,7 +103,7 @@ let encode lst =
    a new encoding with One; and append the previous one to the results list.
 *)
 
-(* 12 *)
+(* 11 *)
 type 'a rle = One of 'a | Many of (int * 'a)
 
 let rec mencode_aux lst cur_res res =
@@ -183,3 +181,5 @@ let range fst lst =
   else range_aux lst fst []
 
 
+let rec append lst1 lst2 =
+  match lst1 with [] -> lst2 | h :: t -> h :: append t lst2
