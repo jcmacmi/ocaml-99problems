@@ -30,6 +30,8 @@ let tests = "test suite for lists" >::: [
   "mencode - a bunch" >:: (fun _ -> assert_equal [Many(4, "a"); One "b"; Many(2, "c"); Many(2, "a"); One "d"; Many(4, "e")] (mencode ["a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e" ]));
 
   "duplicate - five" >:: (fun _ -> assert_equal ["a"; "a"; "b"; "b"; "c"; "c"; "d"; "d"; "e"; "e" ] (duplicate ["a"; "b"; "c"; "d"; "e" ] ));
+
+  "replicate - three" >:: (fun _ -> assert_equal ["a"; "a"; "a"; "b"; "b"; "b"; "c"; "c"; "c"] (replicate ["a"; "b"; "c" ] 3 ));
 ]
 
 let _ = run_test_tt_main tests
