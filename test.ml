@@ -32,6 +32,9 @@ let tests = "test suite for lists" >::: [
   "duplicate - five" >:: (fun _ -> assert_equal ["a"; "a"; "b"; "b"; "c"; "c"; "d"; "d"; "e"; "e" ] (duplicate ["a"; "b"; "c"; "d"; "e" ] ));
 
   "replicate - three" >:: (fun _ -> assert_equal ["a"; "a"; "a"; "b"; "b"; "b"; "c"; "c"; "c"] (replicate ["a"; "b"; "c" ] 3 ));
+
+  "drop - three" >:: (fun _ -> assert_equal ["a"; "b"; "d"; "e"; "g"; "h"; "j"; "k" ] (drop ["a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"; "i"; "j"; "k"] 3 ));
+
 ]
 
 let _ = run_test_tt_main tests
